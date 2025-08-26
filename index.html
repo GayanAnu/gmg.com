@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMG Vehicle Parts & Accessories</title>
+    <!-- Use Tailwind CSS for responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* A light, neutral background */
+        }
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
+        .nav-link.active {
+            font-weight: 700;
+            color: #5DCEC4; /* Accent color for active link */
+        }
+        .whatsapp-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25D366;
+            color: white;
+            padding: 1rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+            z-index: 1000;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: slideIn 0.3s ease-in-out;
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Custom styles for the modern hero section */
+        .hero-section {
+            background: #000;
+            color: #fff;
+            position: relative;
+            padding: 8rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(93, 206, 196, 0.2), rgba(245, 210, 124, 0.2), rgba(0, 0, 0, 0.8));
+            z-index: 1;
+        }
+        .hero-content {
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-gray-900 text-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
+            <!-- Site Title/Logo -->
+            <a href="#" class="text-2xl font-bold mb-4 md:mb-0" onclick="showPage('home')">
+                GMG.com
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="flex flex-wrap md:flex-row space-x-2 md:space-x-4">
+                <button class="nav-link transition-colors duration-200 active" data-page="home">Home</button>
+                <button class="nav-link transition-colors duration-200" data-page="all-products">All Products</button>
+                <button class="nav-link transition-colors duration-200" data-page="about">About Us</button>
+                <button class="nav-link transition-colors duration-200" data-page="contact">Contact Us</button>
+                <button class="nav-link transition-colors duration-200" data-page="return-policy">Return Policy</button>
+                <button class="nav-link transition-colors duration-200" data-page="faq">FAQ</button>
+                <button class="nav-link transition-colors duration-200" data-page="privacy">Privacy Policy</button>
+                <button class="nav-link transition-colors duration-200" data-page="help-center">Help Center</button>
+                <button class="nav-link transition-colors duration-200" data-page="terms-conditions">T&C</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Home Page Content -->
+        <div id="home-page" class="page-content active">
+
+            <!-- Hero Section with Logo -->
+            <section class="hero-section rounded-xl mb-12 shadow-2xl overflow-hidden">
+                <div class="hero-content">
+                    <img src="https://googleusercontent.com/file_content/33" alt="GMG.com Logo" class="w-48 md:w-64 mx-auto mb-6">
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4">
+                        GMG.com: Quality Parts for Every Vehicle
+                    </h1>
+                    <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
+                        Your trusted source for all vehicle parts and accessories. Built on a foundation of dedication and trust.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Search Bar and Currency Selector -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-12">
+                <input type="text" placeholder="Search for parts and accessories..." class="w-full md:w-2/3 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm">
+                <div class="flex items-center gap-2 w-full md:w-1/3">
+                    <label for="currency-select" class="text-sm font-medium text-gray-700">Currency:</label>
+                    <select id="currency-select" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm">
+                        <option value="USD">USD ($)</option>
+                        <option value="LKR">LKR (Rs)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Best Selling Products Section (8 items) -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-semibold text-gray-700 mb-6 border-b-2 border-gray-300 pb-2">Best Selling Products</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/2563EB/ffffff?text=Helmet" alt="Racing Helmet" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">Racing Helmet</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Premium full-face helmet for maximum protection.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$120.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 36,000.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/9CA3AF/ffffff?text=LED+Lights" alt="LED Lights" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">LED Headlight Kit</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Ultra-bright LED kit for improved night visibility.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$45.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 13,500.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/F97316/ffffff?text=Spare+Part" alt="Engine Oil Filter" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">Engine Oil Filter</h3>
+                            <p class="text-gray-600 mb-4 text-sm">High-performance engine oil filter for long-lasting engine health.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$15.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 4,500.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/DC2626/ffffff?text=Brakes" alt="Brake Pads" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">Brake Pads Set</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Ceramic brake pads for superior stopping power.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$35.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 10,500.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/F97316/ffffff?text=Tire+Pump" alt="Tire Inflator" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">Portable Tire Inflator</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Compact and powerful pump for emergency tire inflation.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$25.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 7,500.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/9CA3AF/ffffff?text=Seat+Cover" alt="Car Seat Covers" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">Luxury Car Seat Covers</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Protect and style your seats with these premium covers.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$75.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 22,500.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 7 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/5DCEC4/ffffff?text=Cleaning+Kit" alt="Vehicle Cleaning Kit" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">Vehicle Cleaning Kit</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Everything you need to keep your car sparkling clean.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$30.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 9,000.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 8 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                        <img src="https://placehold.co/600x400/F5D27C/000000?text=Wrench+Set" alt="Wrench Set" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium mb-2">Universal Wrench Set</h3>
+                            <p class="text-gray-600 mb-4 text-sm">A complete set of tools for any repair job.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-gray-900 price-usd">$50.00</span>
+                                <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 15,000.00</span>
+                                <button class="bg-gray-900 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition-colors duration-200" onclick="showPage('checkout')">Go to Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- All Products Page Content -->
+        <div id="all-products-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">All Products</h1>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 p-6 bg-white rounded-xl shadow-lg">
+                <div class="flex items-center gap-4 w-full md:w-1/2">
+                    <label for="min-price" class="text-gray-700 font-medium">Price Range:</label>
+                    <div class="flex items-center gap-2 w-full">
+                        <input type="number" id="min-price" value="0" placeholder="Min" class="w-1/2 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                        <span class="text-gray-500">-</span>
+                        <input type="number" id="max-price" value="1000" placeholder="Max" class="w-1/2 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                    </div>
+                </div>
+                <button onclick="filterProducts()" class="w-full md:w-auto bg-gray-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-700 transition-colors duration-200">
+                    Filter
+                </button>
+            </div>
+            <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Products will be displayed here dynamically -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden product-card" data-price-usd="120" data-price-lkr="36000">
+                    <img src="https://placehold.co/600x400/2563EB/ffffff?text=Helmet" alt="Racing Helmet" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-medium mb-2">Racing Helmet</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Premium full-face helmet.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-900 price-usd">$120.00</span>
+                            <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 36,000.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden product-card" data-price-usd="45" data-price-lkr="13500">
+                    <img src="https://placehold.co/600x400/9CA3AF/ffffff?text=LED+Lights" alt="LED Lights" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-medium mb-2">LED Headlight Kit</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Ultra-bright LED kit.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-900 price-usd">$45.00</span>
+                            <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 13,500.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden product-card" data-price-usd="15" data-price-lkr="4500">
+                    <img src="https://placehold.co/600x400/F97316/ffffff?text=Spare+Part" alt="Engine Oil Filter" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-medium mb-2">Engine Oil Filter</h3>
+                        <p class="text-gray-600 mb-4 text-sm">High-performance engine oil filter.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-900 price-usd">$15.00</span>
+                            <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 4,500.00</span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-xl shadow-lg overflow-hidden product-card" data-price-usd="35" data-price-lkr="10500">
+                    <img src="https://placehold.co/600x400/DC2626/ffffff?text=Brakes" alt="Brake Pads" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-medium mb-2">Brake Pads Set</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Ceramic brake pads for superior stopping power.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-900 price-usd">$35.00</span>
+                            <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 10,500.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden product-card" data-price-usd="25" data-price-lkr="7500">
+                    <img src="https://placehold.co/600x400/F97316/ffffff?text=Tire+Pump" alt="Tire Inflator" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-medium mb-2">Portable Tire Inflator</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Compact and powerful pump.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-900 price-usd">$25.00</span>
+                            <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 7,500.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden product-card" data-price-usd="75" data-price-lkr="22500">
+                    <img src="https://placehold.co/600x400/9CA3AF/ffffff?text=Seat+Cover" alt="Car Seat Covers" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-medium mb-2">Luxury Car Seat Covers</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Protect and style your seats.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-900 price-usd">$75.00</span>
+                            <span class="text-xl font-bold text-gray-900 price-lkr hidden">Rs 22,500.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Us Page Content -->
+        <div id="about-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">About Us</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto text-gray-700">
+                <p class="text-lg leading-relaxed mb-4">
+                    Hello, I'm Gayan Anurradha, and this business is a new chapter in my life's journey. For 18 years, I worked as a Marine Chief Engineer, sailing the seas and providing for my family. Life took an unexpected turn when I had to leave my career and return to Sri Lanka to be with my family.
+                </p>
+                <p class="text-lg leading-relaxed mb-4">
+                    This business is my new focus, built with the same dedication and precision I applied to my work at sea. My goal is to provide high-quality vehicle parts and accessories to my community. Every item you find here is chosen with care and a commitment to reliability.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Thank you for visiting and supporting my new venture. I look forward to serving you with the best products and a trustworthy experience.
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ Page Content -->
+        <div id="faq-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">Frequently Asked Questions</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto prose">
+                <h3 class="text-2xl font-semibold mb-4">General Questions</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">What are your delivery options?</h4>
+                        <p>We offer standard shipping across Sri Lanka. Express delivery options may be available for certain areas.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">How can I pay for my order?</h4>
+                        <p>We accept cash on delivery (COD) and bank transfers. We are working on adding more payment options soon.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Can I track my order?</h4>
+                        <p>Yes, once your order is confirmed, we will provide you with a tracking number so you can follow its progress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Page Content -->
+        <div id="privacy-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">Privacy Policy</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto prose">
+                <p>This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from [Your Site URL].</p>
+                <h4>Personal Information We Collect</h4>
+                <p>When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device.</p>
+                <h4>How We Use Your Personal Information</h4>
+                <p>We use the Order Information that we collect generally to fulfill any orders placed through the Site (including processing your payment information, arranging for shipping, and providing you with invoices and/or order confirmations).</p>
+                <p class="text-sm italic mt-6">
+                    Disclaimer: This is a general template. It is highly recommended to consult with a legal professional to draft a policy that is specific to your business and complies with local laws.
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Us Page Content -->
+        <div id="contact-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">Contact Us</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+                <p class="text-lg text-gray-700 mb-6">
+                    We're here to help you! Feel free to reach out to us with any questions about our products or your order.
+                </p>
+                <div class="space-y-4">
+                    <p class="text-gray-600"><strong class="font-medium">Name:</strong> Gayan Anurradha</p>
+                    <p class="text-gray-600"><strong class="font-medium">Email:</strong> anuradhamadusha2012@gmail.com</p>
+                    <p class="text-gray-600"><strong class="font-medium">Phone:</strong> 0701897424</p>
+                    <p class="text-gray-600"><strong class="font-medium">Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=61577730023272" class="text-blue-600 hover:underline" target="_blank">Gayan Anurradha's Page</a></p>
+                    <div class="pt-4">
+                        <p class="text-sm text-gray-500 italic">Please note: A physical address or map location can be added here if needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Return Policy Page Content -->
+        <div id="return-policy-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">Return Policy</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto prose">
+                <h3 class="text-2xl font-semibold mb-4">General Rules</h3>
+                <p>
+                    Our goal is for you to be completely satisfied with your purchase. If you are not satisfied, we are here to help.
+                </p>
+                <h4>Eligibility for a Refund or Exchange</h4>
+                <ul>
+                    <li>Your item must be unused and in the same condition that you received it.</li>
+                    <li>The item must be in the original packaging.</li>
+                    <li>To complete your return, we require a receipt or proof of purchase.</li>
+                    <li>Items can be returned within 30 days of the purchase date.</li>
+                </ul>
+                <h4>Non-Returnable Items</h4>
+                <p>
+                    Some types of goods are exempt from being returned, such as certain spare parts, custom-made products, or items damaged due to misuse.
+                </p>
+                <h4>Refunds</h4>
+                <p>
+                    Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund. If you are approved, your refund will be processed, and a credit will automatically be applied to your original method of payment, within a certain amount of days.
+                </p>
+                <h4>Exchanges</h4>
+                <p>
+                    We only replace items if they are defective or damaged. If you need to exchange it for the same item, send us an email at the provided contact address.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Checkout Page Content -->
+        <div id="checkout-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">Checkout</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+                <form>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        </div>
+                        <div>
+                            <label for="address" class="block text-sm font-medium text-gray-700">Shipping Address</label>
+                            <textarea id="address" name="address" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        </div>
+                        <div class="border-t pt-6">
+                            <h4 class="text-xl font-semibold mb-4">Order Summary</h4>
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex justify-between text-gray-600">
+                                    <span>Product Name (x1)</span>
+                                    <span>$XX.XX</span>
+                                </li>
+                                <li class="flex justify-between text-gray-600">
+                                    <span>Shipping</span>
+                                    <span>Free</span>
+                                </li>
+                                <li class="flex justify-between font-bold text-gray-900 border-t pt-2">
+                                    <span>Total</span>
+                                    <span>$XX.XX</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="w-full bg-gray-900 text-white py-3 rounded-lg font-bold text-lg hover:bg-gray-700 transition-colors duration-200">
+                            Complete Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Help Center Page Content -->
+        <div id="help-center-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">Help Center</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto prose">
+                <h3 class="text-2xl font-semibold mb-4">Getting Started</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">How do I place an order?</h4>
+                        <p>Simply browse our products, add them to your cart, and proceed to checkout. You can contact us directly on WhatsApp to finalize the order.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Is there a minimum order amount?</h4>
+                        <p>No, there is no minimum order amount. You can order any item you need, big or small.</p>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 mt-8">Shipping & Delivery</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">What are the shipping costs?</h4>
+                        <p>Shipping costs depend on the size and weight of the item, and your location. We will confirm the final cost with you before shipping.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">How long will it take to receive my order?</h4>
+                        <p>Delivery times vary based on your location. We will provide an estimated delivery date once your order has been dispatched.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms and Conditions Page Content -->
+        <div id="terms-conditions-page" class="page-content">
+            <h1 class="text-4xl font-bold text-center mb-8">Terms and Conditions</h1>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto prose">
+                <h3 class="text-2xl font-semibold mb-4">Introduction</h3>
+                <p>
+                    Welcome to GMG.com! These terms and conditions outline the rules and regulations for the use of our website. By accessing this website, we assume you accept these terms and conditions. Do not continue to use GMG.com if you do not agree to take all of the terms and conditions stated on this page.
+                </p>
+                <h4>General Conditions</h4>
+                <p>
+                    We reserve the right to refuse service to anyone for any reason at any time. You understand that your content (not including credit card information), may be transferred unencrypted and involve (a) transmissions over various networks; and (b) changes to conform and adapt to the technical requirements of connecting networks or devices.
+                </p>
+                <h4>Accuracy of Information</h4>
+                <p>
+                    We are not responsible if information made available on this site is not accurate, complete or current. The material on this site is provided for general information only and should not be relied upon or used as the sole basis for making decisions without consulting primary, more accurate, more complete or more timely sources of information.
+                </p>
+                <p class="text-sm italic mt-6">
+                    Disclaimer: This is a general template. It is highly recommended to consult with a legal professional to draft a policy that is specific to your business and complies with local laws.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Button to trigger pop-up -->
+    <div class="fixed top-1/2 left-4 -translate-y-1/2 z-50">
+        <button onclick="showModal()" class="bg-red-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-red-600 transition-colors duration-200">
+            Show Special Offer Pop-up
+        </button>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94701897424" target="_blank" class="whatsapp-button">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24">
+            <path d="M12.04 2.5c-5.26 0-9.52 4.26-9.52 9.52 0 1.94.58 3.75 1.58 5.29L2.5 21.5l4.33-1.42c1.55.95 3.32 1.45 5.21 1.45 5.26 0 9.52-4.26 9.52-9.52.01-5.26-4.25-9.52-9.52-9.52zm3.74 13.91c-.24.59-.44.75-.75.8-.31.06-.69.09-.98.14-.29.05-1.55.51-3.69-.93-2.14-1.45-3.53-3.58-3.61-3.71-.08-.13-.67-.93-.67-1.74s.34-1.39.46-1.52c.12-.13.27-.19.46-.19h.56c.18 0 .43.08.64.64.21.56.72 1.76.78 1.88.06.12.1.25.03.38-.06.12-.4.49-.5.59-.1.1-.21.23-.29.35-.08.12-.19.23-.1.38.08.12.3.49.64.9.4.49.79.84 1.18 1.09.39.25.79.36 1.12.45.33.09.56.07.76-.04.2-.11.64-.26.82-.49.18-.23.47-.35.66-.45.19-.1.39-.14.6-.08.21.06 1.35.63 1.55.73.2.1.33.15.39.23.06.08.06.5-.16 1.09z"/>
+        </svg>
+    </a>
+
+    <!-- Registration Pop-up Modal -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Register Now for a Special Offer!</h3>
+                <p class="text-gray-600 mb-6">Create an account to unlock exclusive discounts and deals.</p>
+                <form onsubmit="event.preventDefault(); showRegistrationMessage();">
+                    <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500 mb-4" required>
+                    <input type="email" placeholder="Your Email Address" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500 mb-4" required>
+                    <input type="password" placeholder="Create a Password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-gray-500 mb-4" required>
+                    <button type="submit" class="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition-colors duration-200">
+                        Register & Get My Offer
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-6 md:p-12 mt-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+            <!-- Company Info -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4">GMG.com</h4>
+                <p class="text-gray-400">High-quality vehicle parts and accessories for a smooth ride.</p>
+            </div>
+            <!-- Customer Service Links -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Customer Service</h4>
+                <ul class="space-y-2">
+                    <li><button class="text-gray-400 hover:text-white transition-colors duration-200" onclick="showPage('contact')">Contact Us</button></li>
+                    <li><button class="text-gray-400 hover:text-white transition-colors duration-200" onclick="showPage('help-center')">Help Center</button></li>
+                    <li><button class="text-gray-400 hover:text-white transition-colors duration-200" onclick="showPage('return-policy')">Returns</button></li>
+                    <li><button class="text-gray-400 hover:text-white transition-colors duration-200" onclick="showPage('faq')">FAQ</button></li>
+                </ul>
+            </div>
+            <!-- Legal Links -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Legal</h4>
+                <ul class="space-y-2">
+                    <li><button class="text-gray-400 hover:text-white transition-colors duration-200" onclick="showPage('terms-conditions')">Terms & Conditions</button></li>
+                    <li><button class="text-gray-400 hover:text-white transition-colors duration-200" onclick="showPage('privacy')">Privacy Policy</button></li>
+                </ul>
+            </div>
+            <!-- Social Media/Contact -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Follow Us</h4>
+                <a href="https://www.facebook.com/profile.php?id=61577730023272" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-200">
+                    <svg class="h-6 w-6 inline-block" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.336v-9.294H9.687v-3.619h2.974V8.409c0-2.964 1.81-4.582 4.454-4.582 1.272 0 2.37.095 2.68.138v3.136h-1.859c-1.467 0-1.751.696-1.751 1.71v2.246h3.693l-.48 3.619h-3.213v9.294h6.046c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
+                    </svg>
+                    <span class="ml-2">Facebook</span>
+                </a>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+            <p class="text-gray-500">&copy; 2025 GMG.com. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript to handle page switching, modal, and currency conversion -->
+    <script>
+        const exchangeRates = {
+            'USD': 1,
+            'LKR': 300, // Example rate
+            'EUR': 0.92,
+            'GBP': 0.79
+        };
+
+        const prices = {
+            'Racing Helmet': { USD: 120.00, LKR: 36000.00 },
+            'LED Headlight Kit': { USD: 45.00, LKR: 13500.00 },
+            'Engine Oil Filter': { USD: 15.00, LKR: 4500.00 },
+            'Universal Body Kit': { USD: 160.00, LKR: 48000.00 },
+            'Vehicle Multimedia': { USD: 89.00, LKR: 26700.00 },
+            'Brake Pads Set': { USD: 35.00, LKR: 10500.00 },
+            'Portable Tire Inflator': { USD: 25.00, LKR: 7500.00 },
+            'Luxury Car Seat Covers': { USD: 75.00, LKR: 22500.00 },
+            'Vehicle Cleaning Kit': { USD: 30.00, LKR: 9000.00 },
+            'Universal Wrench Set': { USD: 50.00, LKR: 15000.00 }
+        };
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page-content');
+        const emailModal = document.getElementById('email-modal');
+        const currencySelect = document.getElementById('currency-select');
+        const productList = document.getElementById('product-list');
+
+        function showPage(pageId) {
+            pages.forEach(page => page.classList.remove('active'));
+            navLinks.forEach(link => link.classList.remove('active'));
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            const targetLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+            if (targetLink) {
+                targetLink.classList.add('active');
+            }
+        }
+        
+        function showModal() {
+            emailModal.style.display = 'block';
+        }
+
+        function closeModal() {
+            emailModal.style.display = 'none';
+        }
+
+        function showRegistrationMessage() {
+            closeModal();
+            // A simple message box instead of alert()
+            const messageBox = document.createElement('div');
+            messageBox.innerHTML = `
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1100]">
+                    <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm w-full">
+                        <h4 class="text-xl font-bold mb-4 text-green-600">🎉 Registration Successful! 🎉</h4>
+                        <p class="mb-6">You've unlocked a special offer! Check your email for details.</p>
+                        <button onclick="this.parentElement.parentElement.remove()" class="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition-colors">Close</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(messageBox);
+        }
+
+        function updatePrices() {
+            const selectedCurrency = currencySelect.value;
+            const priceElements = document.querySelectorAll('.price-usd, .price-lkr');
+            priceElements.forEach(el => {
+                const isUSD = el.classList.contains('price-usd');
+                const isLKR = el.classList.contains('price-lkr');
+
+                if (selectedCurrency === 'USD') {
+                    if (isUSD) { el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+                } else if (selectedCurrency === 'LKR') {
+                    if (isLKR) { el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+                } else {
+                    // For EUR and GBP, we convert the USD price
+                    if (isUSD) {
+                        const usdPrice = parseFloat(el.getAttribute('data-price-usd') || el.textContent.replace('$', ''));
+                        const newPrice = (usdPrice * exchangeRates[selectedCurrency]).toFixed(2);
+                        el.textContent = `${newPrice} ${selectedCurrency}`;
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        function filterProducts() {
+            const minPrice = parseFloat(document.getElementById('min-price').value);
+            const maxPrice = parseFloat(document.getElementById('max-price').value);
+            const selectedCurrency = currencySelect.value;
+
+            if (isNaN(minPrice) || isNaN(maxPrice)) {
+                // Handle invalid input
+                return;
+            }
+
+            const allProducts = document.querySelectorAll('#product-list .product-card');
+            allProducts.forEach(product => {
+                let priceInUSD = parseFloat(product.getAttribute('data-price-usd'));
+                
+                // Convert prices to USD if needed for consistent filtering
+                if (selectedCurrency === 'LKR') {
+                    priceInUSD = priceInUSD / exchangeRates['LKR'];
+                }
+                
+                if (priceInUSD >= minPrice && priceInUSD <= maxPrice) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listeners
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+                // Also update prices when switching to a page with products
+                if (pageId === 'all-products' || pageId === 'home') {
+                    updatePrices();
+                }
+            });
+        });
+
+        currencySelect.addEventListener('change', updatePrices);
+        
+        window.onclick = function(event) {
+            if (event.target == emailModal) {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+            updatePrices();
+        });
+    </script>
+</body>
+</html>
